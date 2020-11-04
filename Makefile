@@ -10,3 +10,6 @@ start_daemon:
 
 build_and_start:
 	docker-compose up --build
+
+stop:
+	docker-compose down
