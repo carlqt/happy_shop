@@ -3,6 +3,9 @@
 # Features!
   - API Docs on /api-docs
 
+# Dependency
+Docker v2.5 and/or above
+
 # Installation
 Clone this repository
 
