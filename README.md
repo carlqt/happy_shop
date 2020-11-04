@@ -3,13 +3,16 @@
 # Features!
   - API Docs on /api-docs
 
-# Note
-The "Add to Cart" button is there for aesthetics only. Coming soon.
-Used sqlite3 so it's easier to get it up and running.
+# Installation
+Clone this repository
 
+# How to run
+## If you have `make`, there are 3 commands you can use
+- `make start` - Starts the app and use the cached image
+- `make build_and_start` - Rebuilds images and starts the app
 
-### Installation
-Clone this repository and run `docker-compose up`
+### Access
+`localhost:3000` for your happy shop
 
 ### API Docs
 
