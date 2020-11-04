@@ -1,0 +1,19 @@
+version: '3'
+services:
+  server:
+    build: "./happy_shop_server"
+    image: "happy_shop_server"
+    command: "bundle exec rails server -p 8000 -b 0.0.0.0"
+    ports:
+      - "8000:8000"
+  web:
+    build: "./happy_shop_react"
+    image: "happy_shop_react"
+    command: "yarn start"
+    volumes:
+      - './happy_shop_react:/app'
+      - '/app/node_modules'
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server

@@ -1,0 +1,177 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/products": {
+      "get": {
+        "summary": "Displays list of products",
+        "tags": [
+          "Products"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "description": "Get items from page"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "string",
+            "enum": [
+              "price",
+              "-price"
+            ],
+            "description": "Order product list by price in ASC or DESC"
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "type": "string",
+            "description": "Example value is 1000..3000. This means that filter products from 1000 price_cents to 3000 price_cents"
+          },
+          {
+            "name": "categories",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Filter products by its categories"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/product_list_response"
+                  }
+                },
+                "meta": {
+                  "$ref": "#/definitions/meta_response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "summary": "Displays a products",
+        "tags": [
+          "Products"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "products list",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/product_response"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "product_response": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price_cents": {
+          "type": "integer"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "product_list_response": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "meta_response": {
+      "type": "object",
+      "properties": {
+        "to": {
+          "type": "integer"
+        },
+        "from": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "items": {
+          "type": "integer"
+        },
+        "total_pages": {
+          "type": "integer"
+        },
+        "total_items": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
